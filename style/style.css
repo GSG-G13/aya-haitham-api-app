@@ -101,7 +101,8 @@ a {
 .platforms,
 .sort-by,
 .genres,
-.filter-by {
+.filter-by,
+.types {
   background-color: #191b1c;
   color: white;
   padding: 10px;
