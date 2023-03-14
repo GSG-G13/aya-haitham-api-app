@@ -1,3 +1,6 @@
+body {
+  background-color: #27292a;
+}
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +27,7 @@ a {
   text-decoration: none;
   color: white;
 }
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
@@ -32,8 +36,8 @@ a {
 }
 .filter-container {
   display: flex;
-  justify-content: space-evenly;
-  margin: 2rem;
+  justify-content: flex-end;
+  margin: 2rem 8rem;
 }
 
 .game-img {
@@ -61,17 +65,9 @@ a {
   border-radius: 8px;
   background: linear-gradient(
     45deg,
-    #ffff00,
-    #00ff00,
     #0099ff,
     #001aff,
     #a200ff,
-    #ff0055,
-    #ff0000,
-    #ff0055,
-    #ff0000,
-    #ffff00,
-    #00ff00,
     #0099ff,
     #001aff,
     #a200ff
@@ -81,7 +77,7 @@ a {
 }
 
 .game-card::after {
-  filter: blur(40px);
+  filter: blur(5px);
 }
 
 @keyframes border {
@@ -104,7 +100,8 @@ a {
 
 .platforms,
 .sort-by,
-.genres {
+.genres,
+.filter-by {
   background-color: #191b1c;
   color: white;
   padding: 10px;
@@ -114,4 +111,19 @@ a {
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   appearance: button;
   outline: none;
+  margin-left: 1rem;
+}
+.filter-by {
+  width: 70px;
+  cursor: pointer;
+  background: linear-gradient(
+    120deg,
+    #0099ff,
+    #001aff,
+    #a200ff,
+    #0099ff,
+    #001aff,
+    #a200ff
+  );
+  border-radius: 8px;
 }
