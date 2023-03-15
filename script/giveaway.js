@@ -15,7 +15,8 @@ function createCards(element) {
   thumbnail.setAttribute("alt", "Thumbnail");
   const parentDiv = document.createElement("div");
   parentDiv.classList.add("card-details");
-  const title = document.createElement("h2");
+  const title = document.createElement("h3");
+  title.classList = "title";
   title.textContent = element.title;
   const link = document.createElement("a");
   link.setAttribute("href", element.open_giveaway_url);
@@ -34,10 +35,18 @@ function createCards(element) {
   const description = document.createElement("p");
   description.textContent = element.description;
   description.classList.add("game-description");
-  const date = document.createElement("span");
-  date.textContent = `Release Date ${element.published_date}`;
-  parentDiv.append(link, div, description, date);
-  card.append(thumbnail, parentDiv);
+  const peopleIcon = document.createElement("i");
+  peopleIcon.classList = "fa-solid fa-user-group";
+
+  const people = document.createElement("span");
+  people.textContent = `${element.users}+ Collected this loot!`;
+  const peoples = document.createElement("div");
+  peoples.classList = "peoples";
+  // peoples.style.position = "absolute";
+  peoples.append(peopleIcon, people);
+
+  parentDiv.append(link, div, description);
+  card.append(thumbnail, parentDiv, peoples);
   return card;
 }
 function createDOM2(result, limit) {
@@ -46,7 +55,6 @@ function createDOM2(result, limit) {
   const limitedResult = result
     .filter((e, index) => e.worth != "N/A")
     .filter((e, index) => index < limit);
-  console.log(limitedResult);
   limitedResult.forEach((element) => {
     container.append(createCards(element));
   });
