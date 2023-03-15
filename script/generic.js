@@ -5,7 +5,6 @@ function fetch(url, cb) {
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       returnedData = JSON.parse(xhr.responseText);
-      console.log(returnedData, "2222");
       cb(returnedData, 20);
     }
   };
@@ -22,6 +21,5 @@ function selectFilter(arr, cb, url, dom) {
     return (acc += `&${element.className}=${element.value}`);
   }, `${url}?`);
 
-  console.log(link);
   cb(link, dom);
 }
