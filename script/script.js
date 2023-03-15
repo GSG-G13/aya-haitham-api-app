@@ -58,41 +58,10 @@ function createCard(element) {
   return card;
 }
 
-function fetch(url, cb) {
-  let xhr = new XMLHttpRequest();
-  const proxyURL = `https://api.codetabs.com/v1/proxy?quest=${url}`;
-  let returnedData;
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      returnedData = JSON.parse(xhr.responseText);
-      console.log(returnedData, "2222");
-      cb(returnedData, 20);
-    }
-  };
-  xhr.open("GET", proxyURL, true);
-
-  xhr.send();
-}
-
 fetch(freeGamesURL, createDOM);
 
 let selectors = [platform_filter, sort_genres, sort_filter];
 
-function selectFilter(arr, cb) {
-  let activeSelectors = arr.filter((element) => element.value);
-  let link = activeSelectors.reduce((acc, element, index) => {
-    if (index == 0) {
-      return (acc += `${element.className}=${element.value}`);
-    } else {
-      return (acc += `&${element.className}=${element.value}`);
-    }
-    return acc;
-  }, `${freeGamesURL}?`);
-
-  console.log(link);
-  cb(link, createDOM);
-}
 filter_button.addEventListener("click", () => {
-  // console.log(fetch);
-  selectFilter(selectors, fetch);
-}); //
+  selectFilter(selectors, fetch, freeGamesURL, createDOM);
+});
