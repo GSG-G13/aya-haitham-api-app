@@ -52,7 +52,9 @@ a {
   text-align: center;
   border-radius: 3px;
 }
-
+.title:hover{
+  color: #a200ff;
+}
 .game-card::before,
 .game-card::after {
   content: "";
@@ -92,10 +94,37 @@ a {
 }
 .content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  color: #0099ff;
+  margin: 1rem 0;
 }
 .card-details {
-  padding-bottom: 1rem;
+  padding: 1rem;
+}
+.card-details p{
+ font-size: 0.85rem;
+}
+.game-description{
+  margin-bottom: 1rem;
+  color: #c1c6ca;
+ 
+}
+.peoples{
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 0.65rem;
+  transform: translateX(-50%);
+  color: #7a8288;
+
+}
+.creators{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2rem;
+    font-size: 0.75rem;
+    text-align: start;
+    color: #7a8288;
 }
 
 .platform,

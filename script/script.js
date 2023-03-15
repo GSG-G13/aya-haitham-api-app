@@ -11,7 +11,6 @@ function createDOM(result, limit) {
   let container = document.querySelector(".cards-container");
   container.textContent = "";
   const limitedResult = result.filter((e, index) => index < limit);
-  console.log(limitedResult);
   limitedResult.forEach((element) => {
     container.append(createCard(element));
   });
@@ -26,7 +25,8 @@ function createCard(element) {
   thumbnail.setAttribute("alt", "Thumbnail");
   const parentDiv = document.createElement("div");
   parentDiv.classList.add("card-details");
-  const title = document.createElement("h2");
+  const title = document.createElement("h3");
+  title.classList = "title";
   title.textContent = element.title;
   const link = document.createElement("a");
   link.setAttribute("href", element.game_url);
@@ -46,14 +46,17 @@ function createCard(element) {
   description.textContent = element.short_description;
   description.classList.add("game-description");
 
-  //   const div2 = document.createElement('div');
+  const div2 = document.createElement("div");
   const publisher = document.createElement("span");
   publisher.textContent = `Publisher ${element.publisher} `;
   const developer = document.createElement("span");
   developer.textContent = `Developer ${element.developer}`;
   const date = document.createElement("span");
   date.textContent = `Release Date ${element.release_date}`;
-  parentDiv.append(link, div, description, publisher, developer, date);
+  div2.classList = "creators";
+  div2.append(publisher, developer, date);
+  parentDiv.append(link, div, description, div2);
+
   card.append(thumbnail, parentDiv);
   return card;
 }
