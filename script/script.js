@@ -1,13 +1,12 @@
 // let url = "https://www.gamerpower.com/api/giveaways";
-const filter_button = document.querySelector(".submit");
+const filter_button = document.querySelector(".filter-by");
 const platform_filter = document.querySelector(".platform");
 const sort_filter = document.querySelector(".sort-by");
 const sort_genres = document.querySelector(".category");
 const option = document.querySelector(".option");
 
 const freeGamesURL = "https://www.freetogame.com/api/games";
-// const freeGamesURL =
-//   "https://free-to-play-games-database.p.rapidapi.com/api/games";
+
 function createDOM(result, limit) {
   let container = document.querySelector(".cards-container");
   container.textContent = "";
@@ -17,13 +16,16 @@ function createDOM(result, limit) {
     container.append(createCard(element));
   });
 }
+
 function createCard(element) {
   const card = document.createElement("div");
-  card.classList.add(".freeCard");
+  card.classList.add("game-card");
   const thumbnail = document.createElement("img");
   thumbnail.setAttribute("src", element.thumbnail);
+  thumbnail.classList.add("game-img");
   thumbnail.setAttribute("alt", "Thumbnail");
   const parentDiv = document.createElement("div");
+  parentDiv.classList.add("card-details");
   const title = document.createElement("h2");
   title.textContent = element.title;
   const link = document.createElement("a");
@@ -31,14 +33,18 @@ function createCard(element) {
   link.append(title);
 
   const div = document.createElement("div");
+  div.classList.add("content");
   const genre = document.createElement("span");
   genre.textContent = element.genre;
+  genre.classList.add("genre");
   const platform = document.createElement("span");
   platform.textContent = element.platform;
+  platform.classList.add("platform-name");
   div.append(genre, platform);
 
   const description = document.createElement("p");
   description.textContent = element.short_description;
+  description.classList.add("game-description");
 
   //   const div2 = document.createElement('div');
   const publisher = document.createElement("span");
@@ -70,11 +76,10 @@ function fetch(url, cb) {
 
 fetch(freeGamesURL, createDOM);
 
-// option.addEventListener("click", option.setAttribute("selected", "selected"));
+let selectors = [platform_filter, sort_genres, sort_filter];
 
-filter_button.onclick = () => {
-  let selectors = [platform_filter, sort_genres, sort_filter];
-  let activeSelectors = selectors.filter((element) => element.value);
+function selectFilter(arr, cb) {
+  let activeSelectors = arr.filter((element) => element.value);
   let link = activeSelectors.reduce((acc, element, index) => {
     if (index == 0) {
       return (acc += `${element.className}=${element.value}`);
@@ -85,5 +90,9 @@ filter_button.onclick = () => {
   }, `${freeGamesURL}?`);
 
   console.log(link);
-  fetch(link, createDOM);
-};
+  cb(link, createDOM);
+}
+filter_button.addEventListener("click", () => {
+  // console.log(fetch);
+  selectFilter(selectors, fetch);
+}); //
