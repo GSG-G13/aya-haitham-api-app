@@ -1,17 +1,21 @@
 // let url = "https://www.gamerpower.com/api/giveaways";
-const submit_button = document.querySelector(".submit");
-const platform_select = document.querySelector(".platform");
+const filter_button = document.querySelector(".submit");
+const platform_filter = document.querySelector(".platform");
+const sort_filter = document.querySelector(".sort-by");
+const sort_genres = document.querySelector(".category");
+const option = document.querySelector(".option");
+
 const freeGamesURL = "https://www.freetogame.com/api/games";
+// const freeGamesURL =
+//   "https://free-to-play-games-database.p.rapidapi.com/api/games";
 function createDOM(result, limit) {
-  const body = document.querySelector("body");
-  const container = document.createElement("div");
-  container.classList.add("container");
+  let container = document.querySelector(".cards-container");
+  container.textContent = "";
   const limitedResult = result.filter((e, index) => index < limit);
   console.log(limitedResult);
   limitedResult.forEach((element) => {
     container.append(createCard(element));
   });
-  body.append(container);
 }
 function createCard(element) {
   const card = document.createElement("div");
@@ -55,10 +59,31 @@ function fetch(url, cb) {
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       returnedData = JSON.parse(xhr.responseText);
+      console.log(returnedData, "2222");
       cb(returnedData, 20);
     }
   };
   xhr.open("GET", proxyURL, true);
+
   xhr.send();
 }
-fetch(freeGamesURL, (result, limit) => createDOM(result, limit));
+
+fetch(freeGamesURL, createDOM);
+
+// option.addEventListener("click", option.setAttribute("selected", "selected"));
+
+filter_button.onclick = () => {
+  let selectors = [platform_filter, sort_genres, sort_filter];
+  let activeSelectors = selectors.filter((element) => element.value);
+  let link = activeSelectors.reduce((acc, element, index) => {
+    if (index == 0) {
+      return (acc += `${element.className}=${element.value}`);
+    } else {
+      return (acc += `&${element.className}=${element.value}`);
+    }
+    return acc;
+  }, `${freeGamesURL}?`);
+
+  console.log(link);
+  fetch(link, createDOM);
+};
