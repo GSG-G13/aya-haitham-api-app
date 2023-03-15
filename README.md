@@ -22,7 +22,7 @@ An application can help Gamers discover new games that they may enjoy and Giveaw
 - [FREEGAMES](https://www.freetogame.com/api-doc) API (Free games api)
 - [GIVEAWAYS](https://www.gamerpower.com/api-read)API (Giveaways api)
 
-## TEAME MATES
+## TEAM MATES
 
 - Aya Qunoo
 - Haitham abu lamdi
