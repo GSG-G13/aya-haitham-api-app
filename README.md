@@ -18,11 +18,10 @@ An application can help Gamers discover new games that they may enjoy and Giveaw
 - HTML
 - CSS
 - JAVA SCRIPT
-- styled-components
 - [FREEGAMES](https://www.freetogame.com/api-doc) API (Free games api)
 - [GIVEAWAYS](https://www.gamerpower.com/api-read)API (Giveaways api)
 
-## TEAM MATES
 
+## TEAMMATES
 - Aya Qunoo
 - Haitham abu lamdi
